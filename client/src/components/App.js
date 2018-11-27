@@ -2,6 +2,7 @@ import React from 'react';
 import LeagueMatchHistory from '../api/LeagueMatchHistory';
 import Section from './Section';
 import SearchBar from './SearchBar';
+import Matches from './Matches';
 
 // @TODO: Remove this when pulling from APU
 import mockMatches from '../mock/get_matches';
@@ -34,7 +35,7 @@ class App extends React.Component {
           <SearchBar onSubmit={this.onSearchSubmit} />
         </Section>
         <Section>
-          <p>Body Content</p>
+          <Matches matches={this.state.matches} />
         </Section>
       </div>
     );
