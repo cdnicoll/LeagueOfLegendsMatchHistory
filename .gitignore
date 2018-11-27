@@ -1,3 +1,6 @@
+# Private files
+server/config.json
+
 # OS garbage, Editors, IDEs, etc
 .DS_Store
 .svn
