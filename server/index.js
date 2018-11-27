@@ -12,6 +12,6 @@ app
   .use('/getSummoner', getSummoner)
   .use('/getMatches', getMatches);
 
-  app.listen(3001, () => {
-    console.log('App listening on port 3001, Lets go!');
-  });
+app.listen(3001, () => {
+  console.log('App listening on port 3001, Lets go!');
+});

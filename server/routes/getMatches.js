@@ -1,6 +1,6 @@
-const routes = require("express").Router();
-const LeagueJs = require("leaguejs");
-const { LOL_API_KEY, PLATFORM_ID } = require("../config.json");
+const routes = require('express').Router();
+const LeagueJs = require('leaguejs');
+const { LOL_API_KEY, PLATFORM_ID } = require('../config.json');
 
 const leagueJs = new LeagueJs(LOL_API_KEY, { PLATFORM_ID });
 
@@ -13,21 +13,21 @@ const leagueJs = new LeagueJs(LOL_API_KEY, { PLATFORM_ID });
  * @param { int } (optional) start index
  * @param { int } (optional) end index
  */
-routes.get("/:accountId/:start?/:end?", async (req, res) => {
+routes.get('/:accountId/:start?/:end?', async (req, res) => {
   try {
     let startIndex = 0;
     let endIndex = 10;
-    if ( req.params.start && req.params.end ) {
-        startIndex = req.params.start;
-        endIndex = req.params.end;
+    if (req.params.start && req.params.end) {
+      startIndex = req.params.start;
+      endIndex = req.params.end;
     }
 
     const matches = await leagueJs.Match.gettingListByAccount(
       req.params.accountId,
       {
         beginIndex: startIndex,
-        endIndex: endIndex
-      }
+        endIndex,
+      },
     );
     res.status(200).json(matches);
   } catch (err) {
