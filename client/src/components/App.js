@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react';
 
 class App extends React.Component {
   render() {
     return (
-        <div><p>Hello World - from client</p></div>
+      <div>
+        <p>Hello World - from client</p>
+      </div>
     );
   }
 }
