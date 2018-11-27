@@ -6,7 +6,10 @@
   "author": "cdnicoll@gmail.com",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.16.4",
+    "leaguejs": "^1.10.1",
+    "morgan": "^1.9.1",
     "nodemon": "^1.18.7"
   },
   "scripts": {
