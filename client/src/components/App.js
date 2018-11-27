@@ -7,17 +7,21 @@ import SearchBar from './SearchBar';
 import mockMatches from '../mock/get_matches';
 
 class App extends React.Component {
+  state = {
+    matches: [],
+  };
+
   // @TODO: To avoid slamming the API while under development
   // @TODO: pass along mock data with a timeout
   onSearchSubmit = async term => {
     // handle async data
-    console.log("Setting timeout to simulate throttle");
+    console.log('Setting timeout to simulate throttle');
     const self = this;
     setTimeout(function() {
-        console.log("timeout done");
-        console.log(mockMatches);
-        self.setState({ matches: mockMatches });
-    }, 400)
+      console.log('timeout done');
+      console.log(mockMatches);
+      self.setState({ matches: mockMatches });
+    }, 400);
   };
 
   render() {
