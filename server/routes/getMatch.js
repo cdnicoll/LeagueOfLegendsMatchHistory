@@ -79,8 +79,8 @@ const processMatchStats = (match, accountId) => {
       }`,
       itemsBought,
       championLevel: participant.stats.champLevel,
-      totalCreepScore,
-      creepScorePerMinutes: totalCreepScore / gameDuration,
+      totalCreepScore: (totalCreepScore).toFixed(2),
+      creepScorePerMinutes: (totalCreepScore / gameDuration).toFixed(2),
       win: participant.stats.win,
     };
 
