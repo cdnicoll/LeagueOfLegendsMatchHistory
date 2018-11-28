@@ -22,7 +22,7 @@ const MatchCard = ({ match }) => {
       <div className="column">
         <Image
           label={{ color: 'blue', content: championLevel, floating: true }}
-          src={`./assets/champion/${championName}.png`}
+          src={`./assets/champion/${championName.replace(/\s+/g, '')}.png`}
           size="tiny"
         />
         <Header as="h5" color="grey">
@@ -56,7 +56,7 @@ const MatchCard = ({ match }) => {
 };
 
 MatchCard.propTypes = {
-  match: PropTypes.instanceOf(Array).isRequired,
+  match: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default MatchCard;

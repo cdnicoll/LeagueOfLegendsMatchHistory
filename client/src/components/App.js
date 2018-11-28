@@ -12,9 +12,11 @@ const END_INDEX = 20;
 class App extends React.Component {
   state = {
     matches: [],
+    loading: false,
   };
 
   onSearchSubmit = async (summonerName) => {
+    this.setState({loading: true});
     const summoner = await LeagueMatchHistory.get(
       `/getSummoner/${summonerName}`,
     );
@@ -36,9 +38,7 @@ class App extends React.Component {
       return match.data;
     });
 
-    this.state = {
-      matches: matchesInformation,
-    };
+    this.setState({ matches: matchesInformation, loading: false });
   };
 
   render() {
@@ -48,7 +48,7 @@ class App extends React.Component {
           <Header title="Match History" />
         </Section>
         <Section>
-          <SearchBar onSubmit={this.onSearchSubmit} />
+          <SearchBar onSubmit={this.onSearchSubmit} loading={this.state.loading} />
         </Section>
         <Section>
           <Matches matches={this.state.matches} />
