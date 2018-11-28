@@ -1,4 +1,7 @@
 # Server
+## Setup
+Copy the  `.env.dist` file over to `.env` and supply an API key. Once done, run `yarn|npm install` and finally `yarn|npm start`
+
 ## REST APIs
 #### Gets a summoner
 ```

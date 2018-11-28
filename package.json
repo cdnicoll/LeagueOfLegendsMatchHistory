@@ -16,6 +16,6 @@
     "start:prod": "cd server && yarn start:prod"
   },
   "engines": {
-    "node": "10.12.0"
+    "node": "8.11.3"
  }
 }
