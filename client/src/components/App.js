@@ -16,7 +16,7 @@ class App extends React.Component {
     matches: [],
     startIndex: 0,
     endIndex: 10,
-    totalGames: 0,
+    totalLoLGames: 50,
     loadMore: false,
     loading: false,
   };
@@ -28,14 +28,20 @@ class App extends React.Component {
         ? updatedEndIndex
         : this.state.endIndex;
 
-    this.state.startIndex =
-      updatedStartIndex + 1 >= this.state.totalGames
-        ? updatedStartIndex
-        : updatedStartIndex + 1;
-    this.state.endIndex =
-      updatedEndIndex >= this.state.totalGames
-        ? this.state.totalGames
-        : updatedEndIndex;
+    this.setState({
+      startIndex:
+        updatedStartIndex + 1 >= this.state.totalLoLGames
+          ? updatedStartIndex
+          : updatedStartIndex + 1,
+    });
+
+    this.setState({
+      endIndex:
+        updatedEndIndex >= this.state.totalLoLGames
+          ? this.state.totalLoLGames
+          : updatedEndIndex,
+    });
+
     this.loadMatches();
   };
 
@@ -55,10 +61,23 @@ class App extends React.Component {
   loadMatches = async (summonerName) => {
     const tmpAmountMatchesLoaded = 55; // to be replaced with total amount of matches
     console.log(this.state);
+    const summoner = await LeagueMatchHistory.get(
+      `/getSummoner/${summonerName}`,
+    );
+    const matches = await LeagueMatchHistory.get(
+      `/getMatches/${summoner.data.accountId}/${this.state.startIndex}/${
+        this.state.endIndex
+      }`,
+    );
+
+    //console.log(this.state);
     // ... loaded some matches
-    this.setState({totalGames: tmpAmountMatchesLoaded});
-    const shouldLoadMore = tmpAmountMatchesLoaded > MATCHES_TO_LOAD && tmpAmountMatchesLoaded > this.state.startIndex
-    this.setState({ loadMore: shouldLoadMore });
+    console.log(matches.data);
+    //this.setState({ totalLoLGames: matches.data.totalGames });
+    const shouldLoadMore =
+      matches.data.totalGames > MATCHES_TO_LOAD &&
+      matches.data.totalGames > this.state.startIndex;
+    this.setState({ loadMore: true });
   };
 
   render() {
