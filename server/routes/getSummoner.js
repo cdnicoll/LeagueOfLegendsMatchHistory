@@ -11,10 +11,14 @@ const leagueJs = new LeagueJs(LOL_API_KEY, { PLATFORM_ID });
  */
 routes.get('/:name', async (req, res) => {
   try {
-    const summoner = await leagueJs.Summoner.gettingByName(req.params.name);
+    const { name } = req.params;
+    if (!name.match(/^[0-9a-zA-Z]+$/)) {
+      throw new Error('Invalid characters');
+    }
+    const summoner = await leagueJs.Summoner.gettingByName(name);
     res.status(200).json(summoner);
   } catch (err) {
-    res.status(400).send(err.response.body);
+    res.status(400).send('Error trying to get the summoner');
   }
 });
 
