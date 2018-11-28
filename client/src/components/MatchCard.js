@@ -1,19 +1,18 @@
 import React from 'react';
+import { Image, Segment } from 'semantic-ui-react';
 
 const MatchCard = (props) => {
-  const {
-    championName,
-    summonerName,
-    championLevel,
-    kda,
-  } = props.match;
+  const { championName, summonerName, championLevel, kda } = props.match;
   return (
-    <div className='ui message grid'>
-      <h2>{championName}</h2>
-      <h5>{summonerName}</h5>
-      <span>{championLevel}</span>
-      <span>{kda}</span>
-    </div>
+    <Segment className="ui message five column grid floating">
+      <div className="column">
+        <Image
+          label={{ color: 'blue', content: championLevel, floating: true }}
+          src={`./assets/champion/${championName}.png`}
+          size="tiny"
+        />
+      </div>
+    </Segment>
   );
 };
 
