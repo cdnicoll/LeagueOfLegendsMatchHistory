@@ -1,9 +1,8 @@
 const routes = require('express').Router();
 const LeagueJs = require('leaguejs');
-const { LOL_API_KEY, PLATFORM_ID } = require('../config.json');
+require('dotenv').config();
 
-const leagueJs = new LeagueJs(LOL_API_KEY, { PLATFORM_ID });
-
+const leagueJs = new LeagueJs(process.env.API_KEY, { platform_id: process.env.PLATFORM_ID });
 /**
  * Gets a summoner by name
  *

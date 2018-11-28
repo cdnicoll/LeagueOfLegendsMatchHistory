@@ -6,15 +6,22 @@
   "author": "cdnicoll@gmail.com",
   "license": "MIT",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "cors": "^2.8.5",
+    "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "leaguejs": "^1.10.1",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.7"
   },
   "scripts": {
-    "start": "node app",
-    "dev": "nodemon app"
+    "start": "nodemon -r babel-register index.js",
+    "dev": "nodemon app",
+    "build": "babel . --ignore node_modules,build --out-dir build --copy-files",
+    "start:prod": "node build/index.js"
   },
   "devDependencies": {
     "eslint": "^5.9.0",

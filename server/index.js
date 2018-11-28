@@ -1,19 +1,26 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const path = require('path');
 const getSummoner = require('./routes/getSummoner');
 const getMatches = require('./routes/getMatches');
 const getMatch = require('./routes/getMatch');
 
 const app = express();
+const staticFiles = express.static(path.join(__dirname, '../../client/build'));
 
 app
   .use(cors())
   .use(morgan('combined'))
   .use('/getSummoner', getSummoner)
   .use('/getMatches', getMatches)
-  .use('/getMatch', getMatch);
+  .use('/getMatch', getMatch)
+  .use(staticFiles);
 
-app.listen(3001, () => {
-  console.log('App listening on port 3001, Lets go!');
+app.listen(process.env.PORT || 3001, function() {
+  console.log(
+    'Express server listening on port %d in %s mode',
+    this.address().port,
+    app.settings.env,
+  );
 });
