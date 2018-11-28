@@ -1,4 +1,9 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Client
+Client side interface. This houses the views and look for the application.
+Built using react. The application can take any backend as it doesn’t alter date too much. 
+
+The view is broken down into several components:
+[LeagueOfLegendsMatchHistory/client/src/components at master · cdnicoll/LeagueOfLegendsMatchHistory · GitHub](https://github.com/cdnicoll/LeagueOfLegendsMatchHistory/tree/master/client/src/components)
 
 ## Available Scripts
 
