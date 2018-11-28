@@ -11,7 +11,7 @@ const leagueJs = new LeagueJs(LOL_API_KEY, { PLATFORM_ID });
 
 const getStaticData = (dataSet, id) => {
   let data;
-  Object.keys(dataSet.data).forEach(obj => {
+  Object.keys(dataSet.data).forEach((obj) => {
     if (parseInt(dataSet.data[obj].key, 10) === id) {
       data = dataSet.data[obj];
     }
@@ -19,15 +19,17 @@ const getStaticData = (dataSet, id) => {
   return data;
 };
 
-const getRune = runeId => {
-  return runesData.find(rune => rune.id === runeId);
+const getRune = (runeId) => {
+  return runesData.find((rune) => rune.id === runeId);
 };
 
-const getCreepScore = creepsPerMinDeltas => {
+const getCreepScore = (creepsPerMinDeltas) => {
   let score = 0;
-  Object.keys(creepsPerMinDeltas).forEach(creep => {
-    score += creepsPerMinDeltas[creep];
-  });
+  if (creepsPerMinDeltas) {
+    Object.keys(creepsPerMinDeltas).forEach((creep) => {
+      score += creepsPerMinDeltas[creep];
+    });
+  }
 
   return score;
 };
@@ -79,7 +81,7 @@ const processMatchStats = (match, accountId) => {
       }`,
       itemsBought,
       championLevel: participant.stats.champLevel,
-      totalCreepScore: (totalCreepScore).toFixed(2),
+      totalCreepScore: totalCreepScore.toFixed(2),
       creepScorePerMinutes: (totalCreepScore / gameDuration).toFixed(2),
       win: participant.stats.win,
     };
