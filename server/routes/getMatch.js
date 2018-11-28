@@ -4,9 +4,9 @@ const championData = require('../data/champion.json');
 const summonerData = require('../data/summoner.json');
 const runesData = require('../data/runesReforged.json');
 const itemData = require('../data/item.json');
-require('dotenv').config();
 
-const leagueJs = new LeagueJs(process.env.API_KEY, { platform_id: process.env.PLATFORM_ID });
+const { API_KEY, PLATFORM_ID } = process.env;
+const leagueJs = new LeagueJs(API_KEY, { PLATFORM_ID });
 
 const getStaticData = (dataSet, id) => {
   let data;

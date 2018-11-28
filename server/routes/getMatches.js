@@ -1,8 +1,8 @@
 const routes = require('express').Router();
 const LeagueJs = require('leaguejs');
-require('dotenv').config();
 
-const leagueJs = new LeagueJs(process.env.API_KEY, { platform_id: process.env.PLATFORM_ID });
+const { API_KEY, PLATFORM_ID } = process.env;
+const leagueJs = new LeagueJs(API_KEY, { PLATFORM_ID });
 /**
  * Gets a list of matches. By default only the 10 latest will be retrived.
  * This is to help throttle a little, it's also possible to pass a start and end

@@ -1,8 +1,7 @@
 import axios from 'axios';
-require('dotenv').config()
+
+const url = process.env.NODE_ENV === 'production' ? 'https://cdnicoll-lol-server.herokuapp.com' : 'http://localhost:3001'
 
 export default axios.create({
-  baseURL: 'https://cdnicoll-lol-server.herokuapp.com',
+  baseURL: url,
 });
-
-
