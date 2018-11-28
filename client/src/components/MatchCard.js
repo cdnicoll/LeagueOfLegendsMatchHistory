@@ -1,7 +1,9 @@
 import React from 'react';
 import { Image, Segment, Header } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import SpellList from './SpellList';
 
-const MatchCard = (props) => {
+const MatchCard = ({ match }) => {
   const {
     championName,
     summonerName,
@@ -9,7 +11,8 @@ const MatchCard = (props) => {
     kda,
     totalCreepScore,
     creepScorePerMinutes,
-  } = props.match;
+    summonerSpells,
+  } = match;
   return (
     <Segment className="ui message five column grid floating">
       <div className="column">
@@ -36,9 +39,16 @@ const MatchCard = (props) => {
             {creepScorePerMinutes}
           </p>
         </div>
+        <div className="column">
+          <SpellList spells={summonerSpells} />
+        </div>
       </div>
     </Segment>
   );
+};
+
+MatchCard.propTypes = {
+  match: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default MatchCard;
