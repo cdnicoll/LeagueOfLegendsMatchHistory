@@ -1,5 +1,6 @@
 import React from 'react';
 import LeagueMatchHistory from '../api/LeagueMatchHistory';
+import Header from './Header';
 import Section from './Section';
 import SearchBar from './SearchBar';
 import Matches from './Matches';
@@ -12,24 +13,22 @@ class App extends React.Component {
     matches: [],
   };
 
-  // @TODO: To avoid slamming the API while under development
-  // @TODO: pass along mock data with a timeout
-  onSearchSubmit = async term => {
-    // handle async data
+  onSearchSubmit = term => {
     console.log('Setting timeout to simulate throttle');
+    console.log('REMOVE THIS SOON');
     const self = this;
     setTimeout(function() {
       console.log('timeout done');
       console.log(mockMatches);
       self.setState({ matches: mockMatches });
     }, 400);
-  };
+  }
 
   render() {
     return (
       <div className='ui container grid'>
         <Section>
-          <h1 className='ui header'>Hello World!</h1>
+          <Header title="Match History" />
         </Section>
         <Section>
           <SearchBar onSubmit={this.onSearchSubmit} />

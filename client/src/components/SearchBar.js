@@ -2,7 +2,7 @@ import React from "react";
 import { Input, Button } from "semantic-ui-react";
 
 class SearchBar extends React.Component {
-  state = { term: "" };
+  state = { term: '' };
 
   onFormSubmit = event => {
     event.preventDefault();
@@ -17,8 +17,9 @@ class SearchBar extends React.Component {
           value={this.state.term}
           placeholder="Search..."
           onChange={e => this.setState({ term: e.target.value })}
+          style={{"margin-right": "10px"}}
         />
-        <Button content="Search" onClick={this.onFormSubmit} />
+        <Button disabled={!this.state.term} content="Search" onClick={this.onFormSubmit} />
       </div>
     );
   }
