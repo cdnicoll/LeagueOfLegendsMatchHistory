@@ -20,7 +20,7 @@ const getStaticData = (dataSet, id) => {
 };
 
 const getRune = (runeId) => {
-  return runesData.find((rune) => rune.id === runeId);
+  return runesData.find(rune => rune.id === runeId);
 };
 
 const getCreepScore = (creepsPerMinDeltas) => {
