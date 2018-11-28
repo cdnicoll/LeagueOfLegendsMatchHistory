@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, Segment, Header } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import SpellList from './SpellList';
+import RuneList from './RuneList';
 
 const MatchCard = ({ match }) => {
   const {
@@ -12,6 +13,7 @@ const MatchCard = ({ match }) => {
     totalCreepScore,
     creepScorePerMinutes,
     summonerSpells,
+    summonerRunes,
   } = match;
   return (
     <Segment className="ui message five column grid floating">
@@ -40,6 +42,9 @@ const MatchCard = ({ match }) => {
       </div>
       <div className="column">
         <SpellList spells={summonerSpells} />
+      </div>
+      <div className='column'>
+        <RuneList runes={summonerRunes} />
       </div>
     </Segment>
   );
