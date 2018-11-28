@@ -34,14 +34,12 @@ const MatchCard = ({ match }) => {
         <div className="row">
           <Header as="h5">Creep Score/Time</Header>
           <p>
-            {totalCreepScore}
-            /
-            {creepScorePerMinutes}
+            {totalCreepScore}/{creepScorePerMinutes}
           </p>
         </div>
-        <div className="column">
-          <SpellList spells={summonerSpells} />
-        </div>
+      </div>
+      <div className="column">
+        <SpellList spells={summonerSpells} />
       </div>
     </Segment>
   );
