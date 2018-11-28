@@ -17,7 +17,7 @@ class SearchBar extends React.Component {
           value={this.state.term}
           placeholder="Search..."
           onChange={e => this.setState({ term: e.target.value })}
-          style={{"margin-right": "10px"}}
+          style={{"marginRight": "10px"}}
         />
         <Button disabled={!this.state.term} content="Search" onClick={this.onFormSubmit} />
       </div>
