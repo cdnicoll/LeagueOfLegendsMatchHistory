@@ -35,6 +35,7 @@ const getCreepScore = (creepsPerMinDeltas) => {
 
 const processMatchStats = (match, accountId) => {
   return new Promise((resolve, reject) => {
+    // find the user in the match to get their stats
     const participantIdentity = match.participantIdentities.find(
       p => p.player.accountId === accountId
     );
