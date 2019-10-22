@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import LeagueMatchHistory from '../api/LeagueMatchHistory';
 import Error from './Error';
@@ -10,16 +10,15 @@ import Matches from './Matches';
 const START_INDEX = 0;
 const END_INDEX = 5;
 
-class App extends React.Component {
-  state = {
-    matches: [],
-    loading: false,
-    error: false,
-    errMsg: '',
-  };
+const App = () => {
+  const [matches, setMatches] = useState([]);
+  const [loading, setIsLoading] = useState(false);
+  const [error, setIsError] = useState(false);
+  const [errMsg, setErrMsg] = useState('');
 
-  onSearchSubmit = async summonerName => {
-    this.setState({ loading: true, error: false });
+  const onSearchSubmit = async summonerName => {
+    setIsLoading(true);
+    setIsError(false);
     try {
       const summoner = await LeagueMatchHistory.get(
         `/getSummoner/${summonerName}`,
@@ -43,37 +42,31 @@ class App extends React.Component {
         return match.data;
       });
 
-      this.setState({ matches: matchesInformation, loading: false });
+      setMatches(matchesInformation);
+      setIsLoading(false);
     } catch (err) {
-      this.setState({
-        loading: false,
-        error: true,
-        errMsg: 'Something went wrong',
-      });
+      setIsLoading(false);
+      setIsError(true);
+      setErrMsg('Something went wrong');
     }
   };
 
-  render() {
-    return (
-      <div className='ui container grid'>
-        <Section>
-          <Header title='Match History' />
-        </Section>
-        <Section>
-          <Error text={this.state.errMsg} isHidden={!this.state.error} />
-        </Section>
-        <Section>
-          <SearchBar
-            onSubmit={this.onSearchSubmit}
-            loading={this.state.loading}
-          />
-        </Section>
-        <Section>
-          <Matches matches={this.state.matches} />
-        </Section>
-      </div>
-    );
-  }
-}
+  return (
+    <div className='ui container grid'>
+      <Section>
+        <Header title='Match History' />
+      </Section>
+      <Section>
+        <Error text={errMsg} isHidden={!error} />
+      </Section>
+      <Section>
+        <SearchBar onSubmit={onSearchSubmit} loading={loading} />
+      </Section>
+      <Section>
+        <Matches matches={matches} />
+      </Section>
+    </div>
+  );
+};
 
 export default App;
