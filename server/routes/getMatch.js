@@ -41,7 +41,7 @@ const processMatchStats = (match, accountId) => {
     );
 
     if (!participantIdentity) {
-      reject(new Error('No participant was found'));
+      reject(new Error('No participant was found'))
     }
 
     const participant = match.participants.find(
