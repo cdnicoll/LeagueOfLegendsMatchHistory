@@ -18,7 +18,7 @@ class App extends React.Component {
     errMsg: '',
   };
 
-  onSearchSubmit = async (summonerName) => {
+  onSearchSubmit = async summonerName => {
     this.setState({ loading: true, error: false });
     try {
       const summoner = await LeagueMatchHistory.get(
@@ -30,7 +30,7 @@ class App extends React.Component {
       );
 
       const gamePromises = [];
-      matches.data.matches.forEach((game) => {
+      matches.data.matches.forEach(game => {
         gamePromises.push(
           LeagueMatchHistory.get(
             `/getMatch/${game.gameId}/${summoner.data.accountId}`,
@@ -39,13 +39,12 @@ class App extends React.Component {
       });
 
       const matchInformationData = await axios.all(gamePromises);
-      const matchesInformation = matchInformationData.map((match) => {
+      const matchesInformation = matchInformationData.map(match => {
         return match.data;
       });
 
       this.setState({ matches: matchesInformation, loading: false });
     } catch (err) {
-      console.log(err);
       this.setState({
         loading: false,
         error: true,
@@ -56,9 +55,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="ui container grid">
+      <div className='ui container grid'>
         <Section>
-          <Header title="Match History" />
+          <Header title='Match History' />
         </Section>
         <Section>
           <Error text={this.state.errMsg} isHidden={!this.state.error} />

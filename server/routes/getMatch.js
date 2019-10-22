@@ -36,7 +36,7 @@ const getCreepScore = (creepsPerMinDeltas) => {
 const processMatchStats = (match, accountId) => {
   return new Promise((resolve, reject) => {
     const participantIdentity = match.participantIdentities.find(
-      p => p.player.accountId === parseInt(accountId, 10),
+      p => p.player.accountId === accountId
     );
 
     if (!participantIdentity) {
@@ -46,6 +46,7 @@ const processMatchStats = (match, accountId) => {
     const participant = match.participants.find(
       p => p.participantId === participantIdentity.participantId,
     );
+
     const champion = getStaticData(championData, participant.championId);
     const summonerSpells = [
       getStaticData(summonerData, participant.spell1Id),
